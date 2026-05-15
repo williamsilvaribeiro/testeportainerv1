@@ -1,33 +1,12 @@
-version: '3.6'
+version: '3.8'
 services:
-  gitlab:
-    image: gitlab/gitlab-ce:latest
-    container_name: gitlab
-    hostname: 'gitlab.example.com' # Substitua
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://129.121.50.125/'; # Substitua
+  web:
+    build: . # Isso diz ao Docker para construir a imagem usando o Dockerfile no diretório atual
     ports:
-      - '8082:80'
-      - '8083:443'
-      - '8222:22'
+      - "8082:80" # Mapeia a porta 80 do host para a porta 80 do container
     volumes:
-      - gitlab-config:/etc/gitlab
-      - gitlab-logs:/var/log/gitlab
-      - gitlab-data:/var/opt/gitlab
-    shm_size: '256m'
-    restart: unless-stopped
-    networks:
-      - gitlab-network
-
-volumes:
-  gitlab-config:
-    name: gitlab-config
-  gitlab-logs:
-    name: gitlab-logs
-  gitlab-data:
-    name: gitlab-data
-
-networks:
-  gitlab-network:
-    name: gitlab-network
+      # Opcional: Se você quiser que as mudanças nos seus arquivos HTML no host sejam refletidas automaticamente no container
+      # sem precisar reconstruir a imagem, você pode usar um volume.
+      # Remova ou comente esta linha se não quiser essa funcionalidade.
+      - ./html:/usr/share/nginx/html
+    restart: always # Garante que o container reinicie automaticamente se parar
