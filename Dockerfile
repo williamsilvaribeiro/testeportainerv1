@@ -11,7 +11,7 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copia os arquivos HTML do seu projeto para o diretório de serviço do Nginx
 # Certifique-se de que o diretório onde está o Dockerfile contém a pasta 'html'
 # com o seu index.html dentro.
-COPY / /usr/share/nginx/html/
+COPY . /usr/share/nginx/html/
 
 # Expõe a porta 80 para acesso externo
 EXPOSE 80
