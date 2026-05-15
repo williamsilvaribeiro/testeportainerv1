@@ -1,6 +1,10 @@
 # Usa uma imagem base do Nginx
 FROM nginx:alpine
 
+# Instala o bash
+# apk é o gerenciador de pacotes do Alpine Linux
+RUN apk add --no-cache bash
+
 # Remove o conteúdo padrão do Nginx
 RUN rm -rf /usr/share/nginx/html/*
 
