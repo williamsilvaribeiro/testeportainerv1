@@ -1,19 +1,16 @@
-# Usa uma imagem base do Nginx, que é um servidor web leve e eficiente.
+# Usa uma imagem base do Nginx
 FROM nginx:alpine
 
-# Remove o arquivo de configuração padrão do Nginx para substituí-lo.
-# Isso garante que não haja conflitos e que nossa configuração seja usada.
-RUN rm /etc/nginx/conf.d/default.conf
+# Remove o conteúdo padrão do Nginx
+RUN rm -rf /etc/nginx/conf.d/*
 
-# Copia os arquivos da sua aplicação (o index.html e outros arquivos estáticos)
-# para o diretório de serviço do Nginx dentro do container.
-# O "." indica o diretório atual onde o Dockerfile está localizado.
+# Copia os arquivos do seu projeto para o diretório de serviço do Nginx
+# Certifique-se de que o caminho de origem (o primeiro "./") corresponde à localização dos seus arquivos HTML no contexto de build.
+# O caminho de destino "/usr/share/nginx/html" é o diretório padrão do Nginx para servir arquivos estáticos.
 COPY . /usr/share/nginx/html
 
-# Expõe a porta 80, que é a porta padrão do Nginx para tráfego HTTP.
-# Isso informa ao Docker que o container escuta nesta porta.
+# Expõe a porta 80 do container
 EXPOSE 80
 
-# Comando para iniciar o Nginx em primeiro plano.
-# Isso é necessário para que o container continue rodando.
-CMD ["nginx", "-g", "daemon off;"]
+# O Nginx já tem um comando padrão para iniciar, então não precisamos de CMD aqui.
+# Ele será executado automaticamente quando o container iniciar.
