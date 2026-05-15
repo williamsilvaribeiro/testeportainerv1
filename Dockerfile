@@ -9,7 +9,7 @@ RUN apk add --no-cache bash
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copia os arquivos do seu site do subdiretório 'testeportainerv1'
-COPY testeportainerv1/ /usr/share/nginx/html/
+COPY . /usr/share/nginx/html/
 
 # Expõe a porta 80
 EXPOSE 80
