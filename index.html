@@ -1,1 +1,567 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Robson Ribeiro | Técnico em Mecatrônica</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #1a1a1a;
+      background: #f4f4f4;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 60%, #c8960c 100%);
+      color: white;
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(200,150,12,0.08) 0%, transparent 60%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(200,150,12,0.25);
+      border: 1px solid #c8960c;
+      color: #f0c040;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-photo {
+      flex-shrink: 0;
+    }
+
+    .header-photo img {
+      width: 260px;
+      height: 320px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 12px;
+      border: 4px solid #c8960c;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .header-text {
+      text-align: left;
+      max-width: 480px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    header h1 span { color: #f0c040; }
+
+    header p.subtitle {
+      font-size: 1.1rem;
+      color: #b0c8e0;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .header-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-whatsapp { background: #25d366; color: white; }
+    .btn-whatsapp:hover {
+      background: #1ebe5a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+    }
+
+    .btn-email {
+      background: transparent;
+      color: #f0c040;
+      border: 2px solid #c8960c;
+    }
+    .btn-email:hover {
+      background: #c8960c;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 700px) {
+      .header-text { text-align: center; }
+      .header-photo img { width: 200px; height: 250px; }
+      .header-ctas { justify-content: center; }
+    }
+
+    /* ── SOBRE ── */
+    .sobre {
+      background: white;
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c8960c;
+      margin-bottom: 10px;
+    }
+
+    .sobre h2 { font-size: 2rem; color: #0a1628; margin-bottom: 20px; }
+
+    .sobre p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      background: linear-gradient(135deg, #0a1628, #1a3a5c);
+      padding: 50px 20px;
+    }
+
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stat-item { text-align: center; color: white; }
+    .stat-item .number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #f0c040;
+      line-height: 1;
+    }
+    .stat-item .label {
+      font-size: 0.85rem;
+      color: #90aac8;
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── SERVIÇOS ── */
+    .servicos {
+      background: #f4f4f4;
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .servicos h2 { font-size: 2rem; color: #0a1628; margin-bottom: 10px; }
+    .servicos .intro { color: #666; margin-bottom: 50px; font-size: 1rem; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 36px 28px;
+      text-align: left;
+      border-top: 4px solid #c8960c;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    }
+
+    .card-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .card h3 { font-size: 1.1rem; color: #0a1628; margin-bottom: 10px; font-weight: 700; }
+    .card p { font-size: 0.92rem; color: #555; line-height: 1.65; }
+
+    /* ── ÁREAS ── */
+    .areas {
+      background: white;
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .areas h2 { font-size: 2rem; color: #0a1628; margin-bottom: 40px; }
+
+    .areas-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .area-tag {
+      background: #eaf1f9;
+      color: #1a3a5c;
+      border: 1px solid #c0d4e8;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ── DIFERENCIAIS ── */
+    .diferenciais {
+      background: linear-gradient(135deg, #0a1628, #1a3a5c);
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .diferenciais h2 { font-size: 2rem; color: white; margin-bottom: 40px; }
+
+    .dif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .dif-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(200,150,12,0.3);
+      border-radius: 10px;
+      padding: 30px 20px;
+      color: white;
+    }
+
+    .dif-item .dif-icon { font-size: 2rem; margin-bottom: 12px; }
+    .dif-item h4 { font-size: 1rem; color: #f0c040; margin-bottom: 8px; }
+    .dif-item p { font-size: 0.88rem; color: #90aac8; line-height: 1.6; }
+
+    /* ── CONTATO ── */
+    .contato {
+      background: #f4f4f4;
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .contato h2 { font-size: 2rem; color: #0a1628; margin-bottom: 10px; }
+    .contato p { color: #666; margin-bottom: 40px; }
+
+    .contato-cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contato-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px 36px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 200px;
+    }
+
+    .contato-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.13);
+    }
+
+    .contato-card .c-icon { font-size: 2rem; }
+    .contato-card .c-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      font-weight: 600;
+    }
+    .contato-card .c-value { font-size: 0.95rem; font-weight: 700; color: #1a3a5c; }
+
+    .contato-card.whatsapp .c-icon { color: #25d366; }
+    .contato-card.email .c-icon { color: #c8960c; }
+    .contato-card.phone .c-icon { color: #1a3a5c; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060e1c;
+      color: #506070;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+    }
+
+    footer span { color: #c8960c; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.9rem; }
+      .stats-grid { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-badge">⚙️ Petróleo & Gás · Mecatrônica Industrial</div>
+    <div class="header-inner">
+
+      <!-- FOTO: salve a imagem como "robson.png" na mesma pasta -->
+      <div class="header-photo">
+        <img src="robson.png" alt="Robson Ribeiro - Técnico em Mecatrônica" />
+      </div>
+
+      <div class="header-text">
+        <h1>Robson <span>Ribeiro</span></h1>
+        <p class="subtitle">Técnico em Mecatrônica com vasta experiência em automação, instrumentação e manutenção industrial nos setores de Petróleo & Gás.</p>
+        <div class="header-ctas">
+          <a class="btn btn-whatsapp"
+             href="https://wa.me/5561981989244?text=Olá%20Robson%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento."
+             target="_blank">
+            💬 Chamar no WhatsApp
+          </a>
+          <a class="btn btn-email" href="mailto:robson.mecatronico@bol.com.br">
+            ✉️ Enviar E-mail
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- SOBRE -->
+  <section class="sobre">
+    <p class="section-label">Quem é Robson</p>
+    <h2>Experiência que gera resultado</h2>
+    <p>
+      Com anos de atuação direta na indústria de Petróleo & Gás, Robson Ribeiro combina conhecimento técnico profundo em mecatrônica com vivência prática em ambientes de alta complexidade e exigência normativa. Sua atuação abrange desde o planejamento e execução de manutenção preventiva até a integração de sistemas automatizados em plantas industriais de grande porte, sempre com foco em segurança, eficiência e conformidade com as normas do setor.
+    </p>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="number">10+</div>
+        <div class="label">Anos de experiência</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">O&G</div>
+        <div class="label">Setor de atuação</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">NR-10</div>
+        <div class="label">Habilitação elétrica</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">24/7</div>
+        <div class="label">Disponibilidade</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="servicos">
+    <p class="section-label">O que eu faço</p>
+    <h2>Serviços Especializados</h2>
+    <p class="intro">Soluções técnicas completas para as necessidades da indústria de Petróleo & Gás.</p>
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-icon">⚙️</div>
+        <h3>Manutenção de Equipamentos Industriais</h3>
+        <p>Manutenção preventiva, corretiva e preditiva em equipamentos críticos de plantas de O&G, garantindo disponibilidade máxima e redução de paradas não planejadas.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>Automação e Controle de Processos</h3>
+        <p>Programação e configuração de CLPs, SCADA e sistemas de controle distribuído (DCS) aplicados a processos industriais de extração, refino e distribuição.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📡</div>
+        <h3>Instrumentação Industrial</h3>
+        <p>Instalação, calibração e manutenção de instrumentos de medição — transmissores de pressão, temperatura, vazão e nível — conforme normas ISA e ABNT.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Sistemas Elétricos Industriais</h3>
+        <p>Diagnóstico, instalação e manutenção de painéis elétricos, acionamentos de motores, inversores de frequência e sistemas de distribuição em baixa e média tensão.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>Comissionamento e Start-up</h3>
+        <p>Acompanhamento técnico em todas as fases de comissionamento de novas unidades industriais, desde a pré-operação até a entrega em produção estável.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Segurança e Conformidade (HSE)</h3>
+        <p>Aplicação de procedimentos seguros em áreas classificadas, gerenciamento de PTW, análise de risco (APR) e conformidade com normas regulamentadoras do setor.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔩</div>
+        <h3>Manutenção de Válvulas e Atuadores</h3>
+        <p>Serviços especializados em válvulas de controle, bloqueio e segurança (PSV/PRV), incluindo teste funcional, reparo e certificação de atuadores pneumáticos e elétricos.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Elaboração de Relatórios Técnicos</h3>
+        <p>Emissão de documentação técnica completa — ordens de serviço, relatórios de inspeção, laudos e histórico de manutenção — para atender auditorias e requisitos de certificação.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ÁREAS DE ATUAÇÃO -->
+  <section class="areas">
+    <p class="section-label">Segmentos</p>
+    <h2>Áreas de Atuação</h2>
+    <div class="areas-grid">
+      <span class="area-tag">🛢️ Upstream — Exploração & Produção</span>
+      <span class="area-tag">🏭 Downstream — Refino</span>
+      <span class="area-tag">🔗 Midstream — Transporte & Dutos</span>
+      <span class="area-tag">⚗️ Petroquímica</span>
+      <span class="area-tag">🌊 Offshore & Onshore</span>
+      <span class="area-tag">🔌 Energia & Utilidades</span>
+      <span class="area-tag">🏗️ Plantas de Compressão</span>
+      <span class="area-tag">💧 Tratamento de Água Industrial</span>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="diferenciais">
+    <h2>Por que escolher Robson Ribeiro?</h2>
+    <div class="dif-grid">
+      <div class="dif-item">
+        <div class="dif-icon">🎯</div>
+        <h4>Especialização em O&G</h4>
+        <p>Foco exclusivo no setor de petróleo e gás, com domínio das normas, protocolos e boas práticas da indústria.</p>
+      </div>
+      <div class="dif-item">
+        <div class="dif-icon">⏱️</div>
+        <h4>Agilidade e Comprometimento</h4>
+        <p>Atendimento rápido e pontual, minimizando o tempo de parada e maximizando a produtividade da sua operação.</p>
+      </div>
+      <div class="dif-item">
+        <div class="dif-icon">📐</div>
+        <h4>Rigor Técnico</h4>
+        <p>Execução criteriosa alinhada às normas ABNT, NR-10, NR-13, NR-33 e padrões internacionais API e ISA.</p>
+      </div>
+      <div class="dif-item">
+        <div class="dif-icon">🤝</div>
+        <h4>Atendimento Personalizado</h4>
+        <p>Cada projeto é tratado de forma única, com análise detalhada das necessidades do cliente e soluções sob medida.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contato">
+    <p class="section-label">Fale comigo</p>
+    <h2>Entre em Contato</h2>
+    <p>Solicite um orçamento ou tire suas dúvidas. Resposta rápida e sem compromisso.</p>
+    <div class="contato-cards">
+
+      <a class="contato-card whatsapp"
+         href="https://wa.me/5561981989244?text=Olá%20Robson%2C%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento."
+         target="_blank">
+        <div class="c-icon">💬</div>
+        <div class="c-label">WhatsApp</div>
+        <div class="c-value">+55 61 98198-9244</div>
+      </a>
+
+      <a class="contato-card email" href="mailto:robson.mecatronico@bol.com.br">
+        <div class="c-icon">✉️</div>
+        <div class="c-label">E-mail</div>
+        <div class="c-value">robson.mecatronico@bol.com.br</div>
+      </a>
+
+      <a class="contato-card phone" href="tel:+5561981989244">
+        <div class="c-icon">📞</div>
+        <div class="c-label">Telefone</div>
+        <div class="c-value">+55 61 98198-9244</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Robson Ribeiro</span> · Técnico em Mecatrônica · Petróleo & Gás</p>
+    <p style="margin-top:6px;">Brasília – DF | Atendimento em todo o território nacional</p>
+  </footer>
+
+</body>
+</html>
