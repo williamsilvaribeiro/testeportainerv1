@@ -9,7 +9,7 @@ services:
         external_url 'http://129.121.50.125/'; # Substitua
     ports:
       - '8082:80'
-      - '82443:443'
+      - '8083:443'
       - '8222:22'
     volumes:
       - gitlab-config:/etc/gitlab
